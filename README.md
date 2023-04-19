@@ -2,10 +2,11 @@
 A simple Japanese clock face for Fitbit Versa and Sense
 
 ## Screenshot
-![A screenshot of the clock face](https://raw.githubusercontent.com/kieferyap/jp-simple-clock/master/screenshot.png)
+![A screenshot of the clock face showing a non-100% battery, and 24-hour time display](https://raw.githubusercontent.com/kieferyap/jp-simple-clock/master/screenshots/001.png)
+![A screenshot of the clock face showing a 100% battery level, and a 12-hour time display](https://raw.githubusercontent.com/kieferyap/jp-simple-clock/master/screenshots/002.png)
 
 ## Features
-- Battery display (with icons per increments of 10%, and a charging icon)
+- Battery display (with icons per increments of 10%, and a charging icon, text becomes red if battery level is less than 20%)
 - Date display (Japanese year and weekday)
 - Time display (12/24-hour support, seconds display)
 - Heartrate display
