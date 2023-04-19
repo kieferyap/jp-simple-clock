@@ -1,6 +1,8 @@
 # jp-simple-clock
-![A screenshot of the clock face](https://raw.githubusercontent.com/kieferyap/jp-simple-clock/master/screenshot.png)
 A simple Japanese clock face for Fitbit Versa and Sense
+
+## Screenshot
+![A screenshot of the clock face](https://raw.githubusercontent.com/kieferyap/jp-simple-clock/master/screenshot.png)
 
 ## Features
 - Battery display (with icons per increments of 10%, and a charging icon)
