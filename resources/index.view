@@ -1,0 +1,39 @@
+<svg class="background">
+  <!-- Main clock -->
+  <text id="clock-prefix" />
+  <text id="hour-minute" />
+  <text id="seconds" />
+
+  <!-- Date -->
+  <text id="jp-date" />
+
+  <!-- Battery level -->
+  <image id="battery-image" x="88%" y="5%+25" width="25" height="12" href="battery-100.png" />
+  <text id="battery-level" />
+
+  <!-- LEFT COLUMN -->
+  <!-- Heart rate -->
+  <image id="heart-rate-image" x="38%" y="50%+48" width="30" height="30" fill="#e74c3c" href="heartrate.png" />
+  <text id="heart-rate" />
+
+  <!-- Zone -->
+  <image id="zone-image" x="38%" y="60%+48" width="30" height="30" fill="#e67e22" href="azm.png" />
+  <text id="zone" />
+
+  <!-- Stairs -->
+  <image id="stairs-image" x="38%" y="70%+48" width="30" height="30" fill="#f1c40f" href="stairs.png" />
+  <text id="stairs" />
+
+  <!-- RIGHT COLUMN -->
+  <!-- Steps -->
+  <image id="steps-image" x="55%" y="50%+48" width="30" height="30" fill="#3498db" href="steps.png" />
+  <text id="steps" />
+
+  <!-- Distance -->
+  <image id="zone-image" x="55%" y="60%+48" width="30" height="30" fill="#1abc9c" href="distance.png" />
+  <text id="distance" />
+
+  <!-- Calories -->
+  <image id="calories-image" x="55%" y="70%+48" width="30" height="30" fill="#2ecc71" href="calories.png" />
+  <text id="calories" />
+</svg>

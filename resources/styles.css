@@ -1,0 +1,118 @@
+.background {
+  viewport-fill: black;
+}
+
+#battery-level {
+  font-size: 25;
+  font-family: System-Regular;
+  text-anchor: end;
+  x: 86%;
+  y: 5%+40;
+  fill: #BBBBBB;
+  text-length: 32;
+}
+
+
+#jp-date {
+  font-size: 35;
+  font-family: System-Regular;
+  text-anchor: end;
+  x: 95%;
+  y: 20%+40;
+  fill: white;
+  text-length: 32;
+}
+
+#clock-prefix {
+  font-size: 25;
+  font-family: System-Bold;
+  text-anchor: start;
+  x: 5%;
+  y: 45%+40;
+  fill: #BBBBBB;
+  text-length: 10;
+}
+
+#hour-minute {
+  font-size: 90;
+  font-family: System-Bold;
+  text-anchor: end;
+  x: 78%;
+  y: 45%+40;
+  fill: white;
+  text-length: 32;
+}
+
+#seconds {
+  font-size: 40;
+  font-family: System-Bold;
+  text-anchor: start;
+  x: 80%;
+  y: 45%+40;
+  fill: #BBBBBB;
+  text-length: 3;
+}
+
+
+#heart-rate {
+  font-size: 30;
+  font-family: System-Regular;
+  text-anchor: end;
+  x: 37%;
+  y: 60%+40;
+  fill: #BBBBBB;
+  text-length: 32;
+}
+
+#zone {
+  font-size: 30;
+  font-family: System-Regular;
+  text-anchor: end;
+  x: 37%;
+  y: 70%+40;
+  fill: #BBBBBB;
+  text-length: 32;
+}
+
+#stairs {
+  font-size: 30;
+  font-family: System-Regular;
+  text-anchor: end;
+  x: 37%;
+  y: 80%+40;
+  fill: #BBBBBB;
+  text-length: 32;
+}
+
+#steps {
+  font-size: 30;
+  font-family: System-Regular;
+  text-anchor: start;
+  x: 65%;
+  y: 60%+40;
+  fill: #BBBBBB;
+  text-length: 32;
+}
+
+
+#distance {
+  font-size: 30;
+  font-family: System-Regular;
+  text-anchor: start;
+  x: 65%;
+  y: 70%+40;
+  fill: #BBBBBB;
+  text-length: 32;
+}
+
+
+
+#calories {
+  font-size: 30;
+  font-family: System-Regular;
+  text-anchor: start;
+  x: 65%;
+  y: 80%+40;
+  fill: #BBBBBB;
+  text-length: 32;
+}
