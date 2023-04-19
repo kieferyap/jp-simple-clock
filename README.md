@@ -1,4 +1,5 @@
 # jp-simple-clock
+![A screenshot of the clock face](https://raw.githubusercontent.com/kieferyap/jp-simple-clock/master/screenshot.png)
 A simple Japanese clock face for Fitbit Versa and Sense
 
 ## Features
@@ -16,3 +17,4 @@ You can download it [here](https://gallery.fitbit.com/ja-jp/details/421deffc-8d6
 - Why I did this: I was looking for a clock face that had all the features mentioned above, but couldn't find any. There was one that was very close, but it had no second display and Japanese year. Plus the activity display is arranged in a weird pentagon for some reason.
 - Why Japanese year: I know it's 2023 this year, but I keep on forgetting the Japanese equivalent whenever I need to fill out forms, so...
 - Misc: This is literally my first clock face. I did this to scratch my own itch, but perhaps it can scratch yours too.
+- Possible improvements: I might add some light HP bars at the background of the activity display portions? I'm satisfied for now though.
