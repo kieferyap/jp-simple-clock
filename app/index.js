@@ -1,11 +1,12 @@
 import clock from "clock"
 import * as document from "document"
+import * as messaging from "messaging"
 import { battery } from "power"
 import { HeartRateSensor } from "heart-rate"
 import { me as appbit } from "appbit"
 import { today, goals } from "user-activity"
 import { preferences } from "user-settings"
-
+// import { memory } from "system";
 
 // Sensors
 const heartRate = new HeartRateSensor()
@@ -14,6 +15,29 @@ heartRate.addEventListener("reading", () => {
   currentHeartRate = heartRate.heartRate
 })
 heartRate.start()
+
+// Settings
+const DATE_SETTING_JYMD = 0
+const DATE_SETTING_EY_JMD = 1
+const DATE_SETTING_EYMD = 2
+const DATE_SETTING_EMDY = 3
+const DATE_SETTING_EMD = 4
+
+const TIME_SETTING_HMS = 0
+// const TIME_SETTING_HM = 1
+
+let dateFormatSetting = DATE_SETTING_JYMD
+let timeFormatSetting = TIME_SETTING_HMS
+messaging.peerSocket.addEventListener("message", (event) => {
+  if (event && event.data) {
+    if (event.data.key === 'dateFormat') {
+      dateFormatSetting = event.data.value.selected[0]
+    }
+    else if (event.data.key === 'timeFormat') {
+      timeFormatSetting = event.data.value.selected[0]
+    }
+  }
+})
 
 // Zero padding
 const zeroPad = input => ('0' + input).slice(-2)
@@ -37,6 +61,8 @@ const batteryImage = document.getElementById('battery-image')
 
 // Update the <text> element every tick with the current time
 clock.ontick = (evt) => {
+  // console.log("JS memory: " + memory.js.used + "/" + memory.js.total);
+
   // Clock face
   let dateToday = evt.date
   let hours = dateToday.getHours()
@@ -46,9 +72,9 @@ clock.ontick = (evt) => {
   // 午前・午後
   if (preferences.clockDisplay == '12h') {
     if (hours > 12) {
-      clockPrefix = '午後'
+      clockPrefix = 'PM'
     } else {
-      clockPrefix = '午前'
+      clockPrefix = 'AM'
     }
     hours = hours % 12 || 12
   } else {
@@ -58,18 +84,44 @@ clock.ontick = (evt) => {
   clockPrefixText.text = clockPrefix
 
   // Seconds
-  let seconds = zeroPad(dateToday.getSeconds())
-  secondsText.text = `${seconds}`
+  if (timeFormatSetting == TIME_SETTING_HMS) {
+    let seconds = zeroPad(dateToday.getSeconds())
+    secondsText.text = `${seconds}`
+  } else {
+    secondsText.text = ''
+  }
 
   // Date
-  const jpWeekday = ['日', '月', '火', '水', '木', '金', '土']
-  const yearDifference = -118
+  const enWeekdayArray = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
+  const jpWeekdayArray = ['日', '月', '火', '水', '木', '金', '土']
+
+  const jpYearDifference = -118
+  const enYearDifference = 1900
   let jpYearPrefix = '令'
-  let jpYear = dateToday.getYear() + yearDifference
+  let jpYear = dateToday.getYear() + jpYearDifference
+  let enYear = dateToday.getYear() + enYearDifference
   let month = dateToday.getMonth() + 1
   let date = zeroPad(dateToday.getDate())
-  let weekday = jpWeekday[dateToday.getDay()]
-  dateText.text = `${jpYearPrefix}${jpYear}年${month}月${date}日 (${weekday})`
+  let jpWeekday = jpWeekdayArray[dateToday.getDay()]
+  let enWeekday = enWeekdayArray[dateToday.getDay()]
+
+  switch (dateFormatSetting) {
+    case DATE_SETTING_JYMD:
+      dateText.text = `${jpYearPrefix}${jpYear}年${month}月${date}日 (${jpWeekday})`;
+      break;
+    case DATE_SETTING_EY_JMD:
+      dateText.text = `${enYear}年${month}月${date}日 (${jpWeekday})`;
+      break;
+    case DATE_SETTING_EYMD:
+      dateText.text = `${enYear}-${zeroPad(month)}-${date} (${enWeekday})`;
+      break;
+    case DATE_SETTING_EMDY:
+      dateText.text = `${zeroPad(month)}-${date}-${enYear} (${enWeekday})`;
+      break;
+    case DATE_SETTING_EMD:
+      dateText.text = `${zeroPad(month)}-${date} (${enWeekday})`;
+      break;
+  }
 
   // Battery
   let currentBatteryLevel = Math.floor(battery.chargeLevel)
@@ -91,7 +143,7 @@ clock.ontick = (evt) => {
   batteryImage.href = batteryImageFile
 
   const completed = ''
-  const completedColor = "#78B75A"
+  // const completedColor = "#78B75A"
 
   // Heart rate
   heartRateText.text = currentHeartRate
@@ -107,35 +159,35 @@ clock.ontick = (evt) => {
     stepsText.text = currentSteps
     if (currentSteps >= goals.steps) {
       stepsText.text = completed + stepsText.text
-      stepsText.style.fill = completedColor
+      stepsText.style.fill = '#a29bfe'
     }
 
     // Stairs
     stairsText.text = currentStairs
     if (currentStairs >= goals.elevationGain) {
       stairsText.text = completed + stairsText.text
-      stairsText.style.fill = completedColor
+      stairsText.style.fill = '#81ecec'
     }
 
     // Calories
     caloriesText.text = currentCalories
     if (currentCalories >= goals.calories) {
       caloriesText.text = completed + caloriesText.text
-      caloriesText.style.fill = completedColor
+      caloriesText.style.fill = '#e67e22'
     }
 
     // Zone
     zoneText.text = currentZone
     if (currentZone >= goals.activeZoneMinutes.total) {
       zoneText.text = completed + zoneText.text
-      zoneText.style.fill = completedColor
+      zoneText.style.fill = '#f1c40f'
     }
 
     // Distance
     distanceText.text = parseFloat(Math.round(currentDistance) / 1000).toFixed(2)
     if (currentDistance >= goals.distance) {
       distanceText.text = completed + distanceText.text
-      distanceText.style.fill = completedColor
+      distanceText.style.fill = '#74b9ff'
     }
   }
   else {
@@ -154,5 +206,4 @@ clock.ontick = (evt) => {
     // Distance
     distanceText.text = `app`
   }
-
 }

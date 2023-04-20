@@ -26,15 +26,15 @@
 
   <!-- RIGHT COLUMN -->
   <!-- Steps -->
-  <image id="steps-image" x="55%" y="50%+48" width="30" height="30" fill="#3498db" href="steps.png" />
+  <image id="steps-image" x="55%" y="50%+48" width="30" height="30" fill="#a29bfe" href="steps.png" />
   <text id="steps" />
 
   <!-- Distance -->
-  <image id="zone-image" x="55%" y="60%+48" width="30" height="30" fill="#1abc9c" href="distance.png" />
+  <image id="zone-image" x="55%" y="60%+48" width="30" height="30" fill="#74b9ff" href="distance.png" />
   <text id="distance" />
 
   <!-- Stairs -->
-  <image id="stairs-image" x="55%" y="70%+48" width="30" height="30" fill="#2ecc71" href="stairs.png" />
+  <image id="stairs-image" x="55%" y="70%+48" width="30" height="30" fill="#81ecec" href="stairs.png" />
   <text id="stairs" />
   
 </svg>
