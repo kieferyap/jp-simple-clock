@@ -160,6 +160,8 @@ clock.ontick = (evt) => {
     if (currentSteps >= goals.steps) {
       stepsText.text = completed + stepsText.text
       stepsText.style.fill = '#a29bfe'
+    } else {
+      stepsText.style.fill = '#BBBBBB'
     }
 
     // Stairs
@@ -167,6 +169,8 @@ clock.ontick = (evt) => {
     if (currentStairs >= goals.elevationGain) {
       stairsText.text = completed + stairsText.text
       stairsText.style.fill = '#81ecec'
+    } else {
+      stairsText.style.fill = '#BBBBBB'
     }
 
     // Calories
@@ -174,6 +178,8 @@ clock.ontick = (evt) => {
     if (currentCalories >= goals.calories) {
       caloriesText.text = completed + caloriesText.text
       caloriesText.style.fill = '#e67e22'
+    } else {
+      caloriesText.style.fill = '#BBBBBB'
     }
 
     // Zone
@@ -181,6 +187,8 @@ clock.ontick = (evt) => {
     if (currentZone >= goals.activeZoneMinutes.total) {
       zoneText.text = completed + zoneText.text
       zoneText.style.fill = '#f1c40f'
+    } else {
+      zoneText.style.fill = '#BBBBBB'
     }
 
     // Distance
@@ -188,6 +196,8 @@ clock.ontick = (evt) => {
     if (currentDistance >= goals.distance) {
       distanceText.text = completed + distanceText.text
       distanceText.style.fill = '#74b9ff'
+    } else {
+      distanceText.style.fill = '#BBBBBB'
     }
   }
   else {
