@@ -8,14 +8,14 @@ A simple clock face for Fitbit Versa and Sense
 ## Features
 - Battery display (with icons per increments of 10%, and a charging icon, text becomes red if battery level is less than 20%)
 - Date display (Japanese year and weekday, can be set)
-- Time display (12/24-hour support, seconds display)
+- Time display (12/24-hour support, seconds display can be toggled)
 - Heartrate display
-- Activity display (Fitbit zone, stairs climbed, steps taken, distance traveed, calories burned)
-- Font color for activities become colored if the daily goal has been met, and resets after a day
+- Activity display (Fitbit zone, stairs climbed, steps taken, distance traveled, calories burned)
+- Font color for activities become colored if the daily goal has been met, and resets the next day
 - Added a way for the user to change the display format of the date and time
 
 ## Download link
-It's free! You can download it [here](https://gallery.fitbit.com/ja-jp/details/421deffc-8d63-47a6-9ceb-54af6881b8de)
+- It's free! You can download it [here](https://gallery.fitbit.com/ja-jp/details/421deffc-8d63-47a6-9ceb-54af6881b8de)
 
 ## Other info
 - **Why I did this**: I was looking for a clock face that had all the features mentioned above, but I couldn't find any. There was one that was very close, but it doesn't display seconds and had no Japanese year.
@@ -28,5 +28,5 @@ It's free! You can download it [here](https://gallery.fitbit.com/ja-jp/details/4
 
 Date | Version | Description | Status
 --- | --- | --- | --- 
-2023-04-20 | v0.1.0 | Initial release | Published, active
-2023-04-21 | v0.1.1 | Bugfix on activity font color | Awaiting Fitbit staff review
+2023-04-20 | v0.1.0 | Initial release | Published
+2023-04-21 | v0.1.1 | Bugfix on activity font color | Published, active
