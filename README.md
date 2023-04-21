@@ -11,7 +11,7 @@ A simple clock face for Fitbit Versa and Sense
 - Time display (12/24-hour support, seconds display)
 - Heartrate display
 - Activity display (Fitbit zone, stairs climbed, steps taken, distance traveed, calories burned)
-- Font color for activities become green if the daily goal has been met
+- Font color for activities become colored if the daily goal has been met, and resets after a day
 - Added a way for the user to change the display format of the date and time
 
 ## Download link
