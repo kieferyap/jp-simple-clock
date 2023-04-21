@@ -23,3 +23,10 @@ It's free! You can download it [here](https://gallery.fitbit.com/ja-jp/details/4
 - **Memory Test**: I did a memory test because there was one clock face that would black out after a while. You can see the results of the test [here](https://raw.githubusercontent.com/kieferyap/jp-simple-clock/master/resources/memory-test.txt). The amount of memory consumed would go up for a few seconds, but would periodically reset.
 - **Cloning and republishing for free**: I know Taiwan has a 民國 year system, and a different system for dates, so if you want to clone this and publish one *for free*, please feel free. It would be nice if you could credit me by linking this repository though. 
 - **Other comments**: This is literally my very first clock face. I did this to scratch my own itch, but perhaps it can scratch yours too.
+
+## Change Logs
+
+Date | Version | Description | Status
+--- | --- | --- | --- 
+2023-04-20 | v0.1.0 | Initial release | Published, active
+2023-04-21 | v0.1.1 | Bugfix on activity font color | Awaiting Fitbit staff review
