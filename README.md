@@ -30,3 +30,4 @@ Date | Version | Description | Status
 --- | --- | --- | --- 
 2023-04-20 | v0.1.0 | Initial release | Published
 2023-04-21 | v0.1.1 | Bugfix on activity font color | Published, active
+2023-04-21 | v0.1.2 | Removed buggy companion, added tap-to-change | Awaiting approval

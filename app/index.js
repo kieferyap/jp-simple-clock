@@ -1,14 +1,14 @@
 import clock from "clock"
 import * as document from "document"
-import * as messaging from "messaging"
 import { battery } from "power"
 import { HeartRateSensor } from "heart-rate"
 import { me as appbit } from "appbit"
 import { today, goals } from "user-activity"
 import { preferences } from "user-settings"
-// import { memory } from "system";
+import { memory } from "system"
 
 // Sensors
+let clockEvent = null
 const heartRate = new HeartRateSensor()
 let currentHeartRate = 0
 heartRate.addEventListener("reading", () => {
@@ -17,27 +17,17 @@ heartRate.addEventListener("reading", () => {
 heartRate.start()
 
 // Settings
-const DATE_SETTING_JYMD = 0
-const DATE_SETTING_EY_JMD = 1
-const DATE_SETTING_EYMD = 2
-const DATE_SETTING_EMDY = 3
+const DATE_SETTING_EYMD = 0
+const DATE_SETTING_EMDY = 1
+const DATE_SETTING_EY_JMD = 2
+const DATE_SETTING_JYMD = 3
 const DATE_SETTING_EMD = 4
+const DATE_SETTING_MAX = 4
+let dateFormatSetting = DATE_SETTING_JYMD
 
 const TIME_SETTING_HMS = 0
-// const TIME_SETTING_HM = 1
-
-let dateFormatSetting = DATE_SETTING_JYMD
+const TIME_SETTING_MAX = 1
 let timeFormatSetting = TIME_SETTING_HMS
-messaging.peerSocket.addEventListener("message", (event) => {
-  if (event && event.data) {
-    if (event.data.key === 'dateFormat') {
-      dateFormatSetting = event.data.value.selected[0]
-    }
-    else if (event.data.key === 'timeFormat') {
-      timeFormatSetting = event.data.value.selected[0]
-    }
-  }
-})
 
 // Zero padding
 const zeroPad = input => ('0' + input).slice(-2)
@@ -59,16 +49,36 @@ const zoneText = document.getElementById('zone')
 const distanceText = document.getElementById('distance')
 const batteryImage = document.getElementById('battery-image')
 
-// Update the <text> element every tick with the current time
-clock.ontick = (evt) => {
+// Clock text: On click, toggle settings
+clockText.addEventListener("click", (event) => {
+  timeFormatSetting += 1
+  if (timeFormatSetting > TIME_SETTING_MAX) {
+    timeFormatSetting = 0
+  }
+  updateClock()
+})
+
+// Date text: On click, toggle settings
+dateText.addEventListener("click", (event) => {
+  dateFormatSetting += 1
+  if (dateFormatSetting > DATE_SETTING_MAX) {
+    dateFormatSetting = 0
+  }
+  updateClock()
+})
+
+function updateClock(evt = null) {
   // console.log("JS memory: " + memory.js.used + "/" + memory.js.total);
 
   // Clock face
-  let dateToday = evt.date
+  if (evt) { 
+    clockEvent = evt
+  }
+  let dateToday = clockEvent.date
   let hours = dateToday.getHours()
   let mins = zeroPad(dateToday.getMinutes())
   let clockPrefix = ''
-  
+
   // 午前・午後
   if (preferences.clockDisplay == '12h') {
     if (hours > 12) {
@@ -107,27 +117,27 @@ clock.ontick = (evt) => {
 
   switch (dateFormatSetting) {
     case DATE_SETTING_JYMD:
-      dateText.text = `${jpYearPrefix}${jpYear}年${month}月${date}日 (${jpWeekday})`;
-      break;
+      dateText.text = `${jpYearPrefix}${jpYear}年${month}月${date}日 (${jpWeekday})`
+      break
     case DATE_SETTING_EY_JMD:
-      dateText.text = `${enYear}年${month}月${date}日 (${jpWeekday})`;
-      break;
+      dateText.text = `${enYear}年${month}月${date}日 (${jpWeekday})`
+      break
     case DATE_SETTING_EYMD:
-      dateText.text = `${enYear}-${zeroPad(month)}-${date} (${enWeekday})`;
-      break;
+      dateText.text = `${enYear}-${zeroPad(month)}-${date} (${enWeekday})`
+      break
     case DATE_SETTING_EMDY:
-      dateText.text = `${zeroPad(month)}-${date}-${enYear} (${enWeekday})`;
-      break;
+      dateText.text = `${zeroPad(month)}-${date}-${enYear} (${enWeekday})`
+      break
     case DATE_SETTING_EMD:
-      dateText.text = `${zeroPad(month)}-${date} (${enWeekday})`;
-      break;
+      dateText.text = `${zeroPad(month)}-${date} (${enWeekday})`
+      break
   }
 
   // Battery
   let currentBatteryLevel = Math.floor(battery.chargeLevel)
   let batteryLevel = `${currentBatteryLevel}%`
 
-  let batteryImageFile = `battery-${Math.floor(currentBatteryLevel/10)*10}.png`
+  let batteryImageFile = `battery-${Math.floor(currentBatteryLevel / 10) * 10}.png`
   if (currentBatteryLevel < 20) {
     batteryText.style.fill = "red"
   }
@@ -154,7 +164,7 @@ clock.ontick = (evt) => {
     const currentCalories = today.adjusted.calories
     const currentZone = today.adjusted.activeZoneMinutes.total
     const currentDistance = today.adjusted.distance
-    
+
     // Steps
     stepsText.text = currentSteps
     if (currentSteps >= goals.steps) {
@@ -216,4 +226,9 @@ clock.ontick = (evt) => {
     // Distance
     distanceText.text = `app`
   }
+}
+
+// Update the <text> element every tick with the current time
+clock.ontick = (evt) => {
+  updateClock(evt)
 }

@@ -1,11 +1,11 @@
 <svg class="background">
   <!-- Main clock -->
   <text id="clock-prefix" />
-  <text id="hour-minute" />
+  <text id="hour-minute" pointer-events="visible" />
   <text id="seconds" />
 
   <!-- Date -->
-  <text id="jp-date" />
+  <text id="jp-date" pointer-events="visible" />
 
   <!-- Battery level -->
   <image id="battery-image" x="88%" y="5%+25" width="25" height="12" href="battery-100.png" />
